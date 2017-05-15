@@ -1,0 +1,30 @@
+<!--index.wxml-->
+<view class="container">
+  <view  bindtap="bindViewTap" class="userinfo">
+    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+  </view>
+<view class="swiper">
+<!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
+
+
+<!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
+<swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper"  class="swiper">
+<!--swiper-item只能包含一个节点再多会自动删除-->
+ <swiper-item>
+ <view style="background: red; height: 100%"> <image src="http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg" class="slide-image" width="355" height="150"/></view>
+ </swiper-item>
+ <swiper-item>
+  <view style="background: green; height: 100%"></view>
+ </swiper-item>
+ <swiper-item>
+  <view style="background: blue; height: 100%"></view>
+ </swiper-item> 
+</swiper>
+
+</view>
+
+  <!--<view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>-->
+</view>

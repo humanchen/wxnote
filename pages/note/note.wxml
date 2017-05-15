@@ -1,0 +1,19 @@
+<!--note.wxml-->
+<view class="container">
+<view class="text">
+<text >添加日志</text>
+</view>
+
+<!--<view class="title">-->
+<input placeholder="这是一个可以自动聚焦的input" bindinput="bindTitle" class="title" maxlength="-1" auto-focus/>
+<!--</view>-->
+
+
+<!--<view class="title">-->
+<textarea class="content" placeholder="这个只有在按钮点击的时候才聚焦"  bindinput="bindContent" />
+<!--</view>-->
+
+<button class="button" type="primary" size="default" loading="{{loading}}" plain="{{plain}}"
+        disabled="{{disabled}}" bindtap="primary" > 提交 </button>
+
+</view>
