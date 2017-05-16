@@ -1,12 +1,10 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
+  <!--<view  bindtap="bindViewTap" class="userinfo">
     <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-  </view>
+  </view>-->
 <view class="swiper">
-<!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
-
 
 <!--是否显示圆点，自动播放， 间隔时间， 监听滚动和点击事件-->
 <swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper"  class="swiper">
@@ -22,6 +20,19 @@
  </swiper-item> 
 </swiper>
 
+</view>
+
+<view class="scroll">
+ <scroll-view scroll-y="true" class="scrollview"  >
+    <!--<view id="green" class="scroll-view-item bc_green"></view>
+    <view id="red"  class="scroll-view-item bc_red"></view>
+    <view id="yellow" class="scroll-view-item bc_yellow"></view>
+    <view id="blue" class="scroll-view-item bc_blue"></view>-->
+
+    <view wx:for="{{items}}">
+  {{index}}: {{item.title}}
+</view>
+</scroll-view>
 </view>
 
   <!--<view class="usermotto">

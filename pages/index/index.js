@@ -3,6 +3,7 @@
 var app = getApp()
 Page({
   data: {
+    items: [],
     motto: 'Hello World',
     userInfo: {},
     imgUrls: [
@@ -22,7 +23,25 @@ Page({
     })
   },
   onLoad: function () {
+    let that=this;
     console.log('onLoad' + app.globalData.userInfo);
+    wx.request({
+      url: 'https://api.humanchan.me/v1/listnote',
+      data: {
+        uid: app.globalData.userInfo
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success: function (res) {
+        
+        that.setData({
+          items: res.data
+        })
+        //  console.log(that.data.items);
+      }
+    })
   },
   changeIndicatorDots: function (e) {
     this.setData({
@@ -43,5 +62,55 @@ Page({
     this.setData({
       duration: e.detail.value
     })
-  }
+  },
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+    console.log('index界面显示');
+    let that = this;
+    wx.request({
+      url: 'https://api.humanchan.me/v1/listnote',
+      data: {
+        uid: app.globalData.userInfo
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success: function (res) {
+    
+        that.setData({
+          items: res.data
+        })
+        //  console.log(that.data.items);
+      }
+    })
+   }
 })
+
+// function reloadIndex(){
+
+//   wx.request({
+//     url: 'https://api.humanchan.me/v1/listnote',
+//     data: {
+//       uid: app.globalData.userInfo
+//     },
+//     header: {
+//       "Content-Type": "application/x-www-form-urlencoded"
+//     },
+//     method: "POST",
+//     success: function (res) {
+
+//       that.setData({
+//         items: res.data
+//       })
+//       //  console.log(that.data.items);
+//     }
+//   })
+//     return;
+// }
+
+// module.exports = {
+//   reloadIndex: reloadIndex
+// }

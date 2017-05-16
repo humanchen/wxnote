@@ -1,4 +1,5 @@
 // note.js
+// var index = require('../index/index.js')
 var app = getApp()
 Page({
 
@@ -97,6 +98,7 @@ Page({
   },
 
   primary: function (event) {
+   
     //提交日记
     console.log(this.data);
     console.log('onLoad2' + app.globalData.userInfo);
@@ -117,6 +119,7 @@ Page({
       },
       complete: function (res) {
         console.log(res.data);
+        // index.reloadIndex();
         if (res == null || res.data == null) {
           console.error('网络请求失败');
           return;
