@@ -67,27 +67,40 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+
+
     console.log('index界面显示');
-    let that = this;
-    wx.request({
-      url: 'https://api.humanchan.me/v1/listnote',
-      data: {
-        uid: app.globalData.userInfo
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      success: function (res) {
+
+    // var date = new Date();
+
+    // console.log(date);
+  //   let that = this;
+  //   wx.request({
+  //     url: 'https://api.humanchan.me/v1/listnote',
+  //     data: {
+  //       uid: app.globalData.userInfo
+  //     },
+  //     header: {
+  //       "Content-Type": "application/x-www-form-urlencoded"
+  //     },
+  //     method: "POST",
+  //     success: function (res) {
     
-        that.setData({
-          items: res.data
-        })
-        //  console.log(that.data.items);
-      }
-    })
-   }
+  //       this.setData({
+  //         items: res.data
+          
+  //       })
+  //       //  console.log(that.data.items);
+  //     }
+  //   })
+    }
 })
+
+
+
+
+
+
 
 // function reloadIndex(){
 

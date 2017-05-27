@@ -13,11 +13,14 @@ App({
       console.log('已经有openid'+openid);
       that.globalData.userInfo = openid;
     }else{
+      console.log('走登录');
       wx.login({
+        
         success: function (res) {
-
+          console.log('登录成功'+res.code);
 
           if (res.code) {
+           
             //发起网络请求
             wx.request({
               url: 'https://api.humanchan.me/v1/getopenid',
@@ -35,7 +38,7 @@ App({
           }
         }
       })
-    }
+     }
   },
   globalData:{
     userInfo:null

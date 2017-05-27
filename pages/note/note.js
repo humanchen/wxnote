@@ -31,7 +31,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    wx.login({
 
+      success: function (res) {
+        console.log('登录成功' + res.code);
+
+        if (res.code) {
+
+          //发起网络请求
+          wx.request({
+            url: 'https://api.humanchan.me/v1/getopenid',
+            data: {
+              code: res.code
+            },
+            success: function (res) {
+              console.log(res.data.data.openid);
+              wx.setStorageSync('openid', res.data.data.openid)
+              // that.globalData.userInfo = res.data.data.openid;
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    })
   },
 
   /**
@@ -115,7 +138,8 @@ Page({
       data: {
         uid: app.globalData.userInfo,
         title: this.data.title,
-        content: this.data.content
+        content: this.data.content,
+        time: getNowFormatDate()
       },
       complete: function (res) {
         console.log(res.data);
@@ -130,3 +154,21 @@ Page({
   },
 
 })
+
+function getNowFormatDate() {
+  var date = new Date();
+  var seperator1 = "-";
+  var seperator2 = ":";
+  var month = date.getMonth() + 1;
+  var strDate = date.getDate();
+  if (month >= 1 && month <= 9) {
+    month = "0" + month;
+  }
+  if (strDate >= 0 && strDate <= 9) {
+    strDate = "0" + strDate;
+  }
+  var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+    + " " + date.getHours() + seperator2 + date.getMinutes()
+    + seperator2 + date.getSeconds();
+  return currentdate;
+}
