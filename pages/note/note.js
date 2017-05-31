@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    nid:'',
     title: '',
     content: ''
   },
@@ -17,11 +18,12 @@ Page({
   onLoad: function (options) {
     
       this.setData({
+        nid:options._id,
         title: options.title,
         content:options.content
       })
      
-
+    console.log(this.data);
 
   },
 
@@ -36,30 +38,30 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.login({
+    // wx.login({
 
-      success: function (res) {
-        console.log('登录成功' + res.code);
+    //   success: function (res) {
+    //     console.log('登录成功' + res.code);
 
-        if (res.code) {
+    //     if (res.code) {
 
-          //发起网络请求
-          wx.request({
-            url: 'https://api.humanchan.me/v1/getopenid',
-            data: {
-              code: res.code
-            },
-            success: function (res) {
-              console.log(res.data.data.openid);
-              wx.setStorageSync('openid', res.data.data.openid)
-              // that.globalData.userInfo = res.data.data.openid;
-            }
-          })
-        } else {
-          console.log('获取用户登录态失败！' + res.errMsg)
-        }
-      }
-    })
+    //       //发起网络请求
+    //       wx.request({
+    //         url: 'https://api.humanchan.me/v1/getopenid',
+    //         data: {
+    //           code: res.code
+    //         },
+    //         success: function (res) {
+    //           console.log(res.data.data.openid);
+    //           wx.setStorageSync('openid', res.data.data.openid)
+    //           // that.globalData.userInfo = res.data.data.openid;
+    //         }
+    //       })
+    //     } else {
+    //       console.log('获取用户登录态失败！' + res.errMsg)
+    //     }
+    //   }
+    // })
   },
 
   /**
@@ -133,29 +135,60 @@ Page({
     // status = false
     // this.setData({ status: status })　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
 
-    wx.request({
-      url: "https://api.humanchan.me/v1/addnote",
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      //data: { cityname: "上海", key: "1430ec127e097e1113259c5e1be1ba70" },  
-      data: {
-        uid: app.globalData.userInfo,
-        title: this.data.title,
-        content: this.data.content,
-        time: getNowFormatDate()
-      },
-      complete: function (res) {
-        console.log(res.data);
-        // index.reloadIndex();
-        wx.navigateBack();
-        if (res == null || res.data == null) {
-          console.error('网络请求失败');
-          return;
+    if(this.data._id == undefined){
+      //提交新日记
+      wx.request({
+        url: "https://api.humanchan.me/v1/addnote",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        //data: { cityname: "上海", key: "1430ec127e097e1113259c5e1be1ba70" },  
+        data: {
+          uid: app.globalData.userInfo,
+          title: this.data.title,
+          content: this.data.content,
+          time: getNowFormatDate()
+        },
+        complete: function (res) {
+          console.log(res.data);
+          // index.reloadIndex();
+          wx.navigateBack();
+          if (res == null || res.data == null) {
+            console.error('网络请求失败');
+            return;
+          }
         }
-      }
-    })
+      })
+    
+    }else{
+      console.log('更新日记');
+
+      wx.request({
+        url: "https://api.humanchan.me/v1/updatenote",
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        //data: { cityname: "上海", key: "1430ec127e097e1113259c5e1be1ba70" },  
+        data: {
+          _id: this.date.nid,
+          title: this.data.title,
+          content: this.data.content,
+        },
+        complete: function (res) {
+          console.log(res.data);
+          wx.navigateBack();
+          if (res == null || res.data == null) {
+            console.error('网络请求失败');
+            return;
+          }
+        }
+      })
+    }
+
+
+
 
   },
 

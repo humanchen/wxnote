@@ -27,7 +27,7 @@
 
   <scroll-view scroll-y="true" class="scrollview" bindscrolltoupper="bindscrolltoupper">
     <view wx:for="{{items}}" class="note">
-      <navigator url="../note/note?title={{item.title}}&&content={{item.content}}" class="notenav">
+      <navigator url="../note/note?title={{item.title}}&&content={{item.content}}&&_id={{item._id}}" class="notenav">
         <view class="notecontent">
           <text class="titletext">{{item.title}}</text>
           <text class="timetext">{{item.time}}</text>

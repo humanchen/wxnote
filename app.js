@@ -20,7 +20,7 @@ App({
           console.log('登录成功'+res.code);
 
           if (res.code) {
-           
+        
             //发起网络请求
             wx.request({
               url: 'https://api.humanchan.me/v1/getopenid',
@@ -40,7 +40,26 @@ App({
       })
      }
   },
+  getUserInfo: function (cb) {
+    var that = this
+    if (this.globalData.userin2) {
+      typeof cb == "function" && cb(this.globalData.userin2)
+    } else {
+      //调用登录接口
+      wx.login({
+        success: function () {
+          wx.getUserInfo({
+            success: function (res) {
+              that.globalData.userin2 = res.userInfo
+              typeof cb == "function" && cb(that.globalData.userin2)
+            }
+          })
+        }
+      })
+    }
+  },
   globalData:{
-    userInfo:null
+    userInfo:null,
+    userin2:null
   }
 })

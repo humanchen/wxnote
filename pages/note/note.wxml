@@ -14,6 +14,6 @@
 <!--</view>-->
 
 <button class="button" type="primary" size="default" loading="{{loading}}" plain="{{plain}}"
-        disabled="{{disabled}}" bindtap="primary" > 提交 </button>
+        disabled="{{disabled}}" bindtap="primary" > 保存 </button>
 
 </view>

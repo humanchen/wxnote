@@ -96,7 +96,7 @@ Page({
           items: res.data
           
         })
-        //  console.log(that.data.items);
+          console.log(that.data.items);
       }
     })
     }

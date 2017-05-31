@@ -2,7 +2,8 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/note/note"
+    "pages/note/note",
+    "pages/person/person"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -19,7 +20,7 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/person/person",
         "text": "个人中心",
         "iconPath": "images/my.png",
         "selectedIconPath": "images/my.png"
