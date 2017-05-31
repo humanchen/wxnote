@@ -19,12 +19,6 @@
         "text": "首页"
       },
       {
-        "pagePath": "pages/note/note",
-        "text": "记录",
-        "iconPath": "images/rem.png",
-        "selectedIconPath": "images/rem.png"
-      },
-      {
         "pagePath": "pages/index/index",
         "text": "个人中心",
         "iconPath": "images/my.png",

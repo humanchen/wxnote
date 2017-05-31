@@ -12,7 +12,9 @@ width: 100%;
   border-width: 5rpx;
   border-radius: 15rpx;
   border-color: gainsboro;
-  /*background-color: red;*/
+  background-color: white;
+  /*font-size: 25rpx;*/
+  padding: 8rpx;
 }
 
 .text{
@@ -29,11 +31,14 @@ display: flex;
   border-width: 5rpx;
   border-radius: 15rpx;
   border-color: gainsboro;
-  /*background-color: red;*/
+  background-color: white;
+
+  padding: 8rpx;
 }
 
 .button{
   margin-top: 30rpx;
-  margin-bottom: 30rpx;
-  width: 600rpx;
+  margin-bottom: 40rpx;
+  width: 616rpx;
+  /*padding: 120rpx;*/
 }

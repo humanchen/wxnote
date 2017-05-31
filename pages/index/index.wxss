@@ -58,14 +58,25 @@ display: flex;
   
 }
 
-.notecontent{
+
+.notenav{
   display: flex;
   flex-direction: column;
  align-self: center;
   background-color: white;
   width: 90%;
   margin: 10rpx;
-   box-shadow: 2px 2px 2px #888888;
+  box-shadow: 2px 2px 2px #888888;
+}
+
+.notecontent{
+  display: flex;
+  flex-direction: column;
+ /*align-self: center;*/
+  background-color: white;
+  /*width: 90%;
+  margin: 10rpx;*/
+   
 }
 
 .titletext{
@@ -88,4 +99,12 @@ display: flex;
 width: 0;
 height: 0;
 color: transparent;
+}
+
+.add{
+  position: absolute;
+  bottom: 50rpx;
+  right: 50rpx;
+  width: 100rpx;
+  height: 100rpx;
 }

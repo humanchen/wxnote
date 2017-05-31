@@ -5,8 +5,8 @@
     <text class="userinfo-nickname">{{userInfo.nickName}}</text>
   </view>-->
 
-  
-<!--<view class="swiper">
+
+  <!--<view class="swiper">
 
 
 <swiper indicator-dots="true" autoplay="true" duration="1000" bindchange="listenSwiper"  class="swiper">
@@ -25,16 +25,18 @@
 </view>-->
 
 
- <scroll-view scroll-y="true" class="scrollview"  bindscrolltoupper="bindscrolltoupper" >
+  <scroll-view scroll-y="true" class="scrollview" bindscrolltoupper="bindscrolltoupper">
     <view wx:for="{{items}}" class="note">
-    <view class="notecontent">
-    <text class="titletext">{{item.title}}</text>
-<text class="timetext">{{item.time}}</text>
-  </view>
-</view>
-</scroll-view>
+      <navigator url="../note/note?title={{item.title}}&&content={{item.content}}" class="notenav">
+        <view class="notecontent">
+          <text class="titletext">{{item.title}}</text>
+          <text class="timetext">{{item.time}}</text>
+        </view>
+      </navigator>
+    </view>
+  </scroll-view>
 
-
+  <image src="./add.png" class="add" mode="aspectFit" bindtap="addnote"></image>
   <!--<view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>-->

@@ -22,6 +22,12 @@ Page({
       url: '../logs/logs'
     })
   },
+  addnote: function (event) {
+    console.log(event)
+    wx.navigateTo({
+      url: '../note/note'
+    })
+  },
   onLoad: function () {
     let that=this;
     console.log('onLoad' + app.globalData.userInfo);
@@ -74,25 +80,25 @@ Page({
     // var date = new Date();
 
     // console.log(date);
-  //   let that = this;
-  //   wx.request({
-  //     url: 'https://api.humanchan.me/v1/listnote',
-  //     data: {
-  //       uid: app.globalData.userInfo
-  //     },
-  //     header: {
-  //       "Content-Type": "application/x-www-form-urlencoded"
-  //     },
-  //     method: "POST",
-  //     success: function (res) {
+    let that = this;
+    wx.request({
+      url: 'https://api.humanchan.me/v1/listnote',
+      data: {
+        uid: app.globalData.userInfo
+      },
+      header: {
+        "Content-Type": "application/x-www-form-urlencoded"
+      },
+      method: "POST",
+      success: function (res) {
     
-  //       this.setData({
-  //         items: res.data
+        that.setData({
+          items: res.data
           
-  //       })
-  //       //  console.log(that.data.items);
-  //     }
-  //   })
+        })
+        //  console.log(that.data.items);
+      }
+    })
     }
 })
 
