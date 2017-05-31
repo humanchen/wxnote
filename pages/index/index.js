@@ -6,6 +6,7 @@ Page({
     items: [],
     motto: 'Hello World',
     userInfo: {},
+    flag: 0,
     imgUrls: [
       'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
       'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
@@ -29,25 +30,25 @@ Page({
     })
   },
   onLoad: function () {
-    let that=this;
-    console.log('onLoad' + app.globalData.userInfo);
-    wx.request({
-      url: 'https://api.humanchan.me/v1/listnote',
-      data: {
-        uid: app.globalData.userInfo
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      success: function (res) {
+    // let that=this;
+    // console.log('onLoad' + app.globalData.userInfo);
+    // wx.request({
+    //   url: 'https://api.humanchan.me/v1/listnote',
+    //   data: {
+    //     uid: app.globalData.userInfo
+    //   },
+    //   header: {
+    //     "Content-Type": "application/x-www-form-urlencoded"
+    //   },
+    //   method: "POST",
+    //   success: function (res) {
         
-        that.setData({
-          items: res.data
-        })
-        //  console.log(that.data.items);
-      }
-    })
+    //     that.setData({
+    //       items: res.data
+    //     })
+    //     //  console.log(that.data.items);
+    //   }
+    // })
   },
   changeIndicatorDots: function (e) {
     this.setData({
@@ -91,12 +92,28 @@ Page({
       },
       method: "POST",
       success: function (res) {
-    
-        that.setData({
-          items: res.data
+        
+        if (res.data == 0) {
           
-        })
-          console.log(that.data.items);
+          that.setData({
+            items: res.data,
+             flag: 1
+          })
+          
+        
+      
+        } else {
+          console.log(res.data)
+          that.setData({
+            items: res.data,
+            flag: 0
+          })
+      
+        }
+        
+
+
+          
       }
     })
     }

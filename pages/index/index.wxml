@@ -24,7 +24,7 @@
 
 </view>-->
 
-
+ <text class="{{flag===0?'hide':'userinfo-nickname'}}" >请创建第一条笔记吧</text>
   <scroll-view scroll-y="true" class="scrollview" bindscrolltoupper="bindscrolltoupper">
     <view wx:for="{{items}}" class="note">
       <navigator url="../note/note?title={{item.title}}&&content={{item.content}}&&_id={{item._id}}" class="notenav">

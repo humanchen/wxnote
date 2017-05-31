@@ -24,7 +24,12 @@ page{height:100%;
 }
 
 .userinfo-nickname {
+  margin-top: 100rpx;
   color: #aaa;
+}
+
+.hide{
+    display:none;
 }
 
 .usermotto {
@@ -66,7 +71,8 @@ display: flex;
   background-color: white;
   width: 90%;
   margin: 10rpx;
-  box-shadow: 2px 2px 2px #888888;
+  /*box-shadow: 1px 1px 1px #888888;*/
+  border-radius:10px;
 }
 
 .notecontent{
@@ -74,6 +80,7 @@ display: flex;
   flex-direction: column;
  /*align-self: center;*/
   background-color: white;
+   border-radius: 5px;
   /*width: 90%;
   margin: 10rpx;*/
    
@@ -82,7 +89,7 @@ display: flex;
 .titletext{
 /*color: lightgray;*/
   font-size: 35rpx;
-  margin-top: 15rpx;
+  margin-top: 30rpx;
   margin-left: 25rpx;
   /*margin-bottom: 10rpx;*/
 }
@@ -92,7 +99,7 @@ display: flex;
   font-size: 25rpx;
   margin-top: 10rpx;
   margin-left: 25rpx;
-  margin-bottom: 10rpx;
+  margin-bottom: 30rpx;
 }
 
 ::-webkit-scrollbar {
