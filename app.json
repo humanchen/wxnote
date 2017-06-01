@@ -7,23 +7,23 @@
   ],
   "window":{
     "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#ffbd69",
     "navigationBarTitleText": "随云笔记",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle":"white"
   },
   "tabBar": {
     "list": [
       {
         "pagePath": "pages/index/index",
-        "iconPath": "images/main.png",
-        "selectedIconPath": "images/main.png",
+        "iconPath": "images/记录01.png",
+        "selectedIconPath": "images/记录02.png",
         "text": "首页"
       },
       {
         "pagePath": "pages/person/person",
         "text": "个人中心",
-        "iconPath": "images/my.png",
-        "selectedIconPath": "images/my.png"
+        "iconPath": "images/个人中心01.png",
+        "selectedIconPath": "images/个人中心02.png"
       }
     ]
   }

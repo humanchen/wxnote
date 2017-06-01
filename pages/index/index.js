@@ -18,7 +18,7 @@ Page({
     duration: 1000
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
@@ -30,25 +30,39 @@ Page({
     })
   },
   onLoad: function () {
-    // let that=this;
-    // console.log('onLoad' + app.globalData.userInfo);
-    // wx.request({
-    //   url: 'https://api.humanchan.me/v1/listnote',
-    //   data: {
-    //     uid: app.globalData.userInfo
-    //   },
-    //   header: {
-    //     "Content-Type": "application/x-www-form-urlencoded"
-    //   },
-    //   method: "POST",
-    //   success: function (res) {
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      })
+      console.log(app.globalData.userInfo)
+      wx.request({
+        url: 'https://api.humanchan.me/v1/register',
+        data: {
+          openid: app.globalData.userInfo,
+          nickName: userInfo.nickName,
+          gender: userInfo.gender,
+          language: userInfo.language,
+          city: userInfo.city,
+          province: userInfo.province,
+          country: userInfo.country,
+          avatarUrl: userInfo.avatarUrl
+        },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        success: function (res) {
+          console.log(res.data)
+        }
         
-    //     that.setData({
-    //       items: res.data
-    //     })
-    //     //  console.log(that.data.items);
-    //   }
-    // })
+      })
+    })
+
+
+
   },
   changeIndicatorDots: function (e) {
     this.setData({
@@ -78,9 +92,6 @@ Page({
 
     console.log('index界面显示');
 
-    // var date = new Date();
-
-    // console.log(date);
     let that = this;
     wx.request({
       url: 'https://api.humanchan.me/v1/listnote',
@@ -92,31 +103,31 @@ Page({
       },
       method: "POST",
       success: function (res) {
-        
+
         if (res.data == 0) {
-          
+
           that.setData({
             items: res.data,
-             flag: 1
+            flag: 1
           })
-          
-        
-      
+
+
+
         } else {
           console.log(res.data)
           that.setData({
             items: res.data,
             flag: 0
           })
-      
+
         }
-        
 
 
-          
+
+
       }
     })
-    }
+  }
 })
 
 

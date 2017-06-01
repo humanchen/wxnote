@@ -9,14 +9,20 @@ Page({
   data: {
     nid:'',
     title: '',
-    content: ''
+    content: '',
+    userInfo: {},
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    if(options.title==undefined)
+       options.title='';
+
+    if (options.content == undefined)
+      options.content = '';
+
       this.setData({
         nid:options._id,
         title: options.title,
@@ -25,6 +31,15 @@ Page({
      
     console.log(this.data);
 
+    var that = this
+    //调用应用实例的方法获取全局数据
+    app.getUserInfo(function (userInfo) {
+      //更新数据
+      that.setData({
+        userInfo: userInfo
+      })
+
+    })
   },
 
   /**
@@ -38,30 +53,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    // wx.login({
 
-    //   success: function (res) {
-    //     console.log('登录成功' + res.code);
+   
 
-    //     if (res.code) {
-
-    //       //发起网络请求
-    //       wx.request({
-    //         url: 'https://api.humanchan.me/v1/getopenid',
-    //         data: {
-    //           code: res.code
-    //         },
-    //         success: function (res) {
-    //           console.log(res.data.data.openid);
-    //           wx.setStorageSync('openid', res.data.data.openid)
-    //           // that.globalData.userInfo = res.data.data.openid;
-    //         }
-    //       })
-    //     } else {
-    //       console.log('获取用户登录态失败！' + res.errMsg)
-    //     }
-    //   }
-    // })
   },
 
   /**
@@ -132,8 +126,20 @@ Page({
     //提交日记
     console.log(this.data);
     console.log('onLoad2' + app.globalData.userInfo);
-    // status = false
-    // this.setData({ status: status })　　　　//setData方法可以建立新的data属性，从而起到跟视图实时同步的效果
+    if(this.data.title==''){
+      wx.showModal({
+        title: '别忘了标题哦么么哒~😘',
+        showCancel: false,
+        success: function (res) {
+          if (res.confirm) {
+            console.log('用户点击确定')
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      return;
+    }
 
     if(this.data._id == undefined){
       //提交新日记
@@ -148,11 +154,18 @@ Page({
           uid: app.globalData.userInfo,
           title: this.data.title,
           content: this.data.content,
+          nickName:this.data.userInfo.nickName,
+          gender: this.data.userInfo.gender,
+          language: this.data.userInfo.language,
+          city: this.data.userInfo.city,
+          province: this.data.userInfo.province,
+          country: this.data.userInfo.country,
+          avatarUrl: this.data.userInfo.avatarUrl,
           time: getNowFormatDate()
         },
         complete: function (res) {
           console.log(res.data);
-          // index.reloadIndex();
+          
           wx.navigateBack();
           if (res == null || res.data == null) {
             console.error('网络请求失败');
@@ -194,20 +207,33 @@ Page({
 
 })
 
+//获取格式化时间
 function getNowFormatDate() {
   var date = new Date();
   var seperator1 = "-";
   var seperator2 = ":";
   var month = date.getMonth() + 1;
   var strDate = date.getDate();
+  var hour = date.getHours();
+  var minute = date.getMinutes();
+  var second = date.getSeconds();
+
   if (month >= 1 && month <= 9) {
     month = "0" + month;
   }
   if (strDate >= 0 && strDate <= 9) {
     strDate = "0" + strDate;
   }
+  if (minute >= 0 && minute <= 9) {
+    minute = "0" + minute;
+  }
+  if (second >= 0 && second <= 9) {
+    second = "0" + second;
+  }
+
   var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
-    + " " + date.getHours() + seperator2 + date.getMinutes()
-    + seperator2 + date.getSeconds();
+    + " " + hour + seperator2 + minute
+    + seperator2 + second;
   return currentdate;
+
 }

@@ -40,5 +40,6 @@ display: flex;
   margin-top: 30rpx;
   margin-bottom: 40rpx;
   width: 616rpx;
+  background-color: blue;
   /*padding: 120rpx;*/
 }

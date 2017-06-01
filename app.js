@@ -17,7 +17,7 @@ App({
       wx.login({
         
         success: function (res) {
-          console.log('登录成功'+res.code);
+          console.log('登录成功'+res);
 
           if (res.code) {
         

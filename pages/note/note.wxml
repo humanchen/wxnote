@@ -5,15 +5,17 @@
 </view>-->
 
 <!--<view class="title">-->
-<input placeholder="标题" bindinput="bindTitle" class="title" maxlength="-1" auto-focus value="{{title}}"/>
+<input placeholder="标题么么哒~😘" bindinput="bindTitle" class="title" maxlength="-1" auto-focus value="{{title}}"/>
 <!--</view>-->
 
 
 <!--<view class="title">-->
-<textarea class="content" placeholder="内容"   bindinput="bindContent"  value="{{content}}"/>
+<textarea class="content" placeholder="😙开开心心过好每一天😜"   bindinput="bindContent"  value="{{content}}"/>
 <!--</view>-->
 
 <button class="button" type="primary" size="default" loading="{{loading}}" plain="{{plain}}"
         disabled="{{disabled}}" bindtap="primary" > 保存 </button>
+
+ 
 
 </view>
