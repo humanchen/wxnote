@@ -32,9 +32,10 @@ Page({
         nid:options._id,
         title: options.title,
         content:options.content
+        
       })
-     
-    console.log(this.data);
+      console.log('副职1')
+    // console.log(this.data);
 
     var that = this
     //调用应用实例的方法获取全局数据
@@ -58,13 +59,13 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
-    this.setData({
-     
-      title: this.data.title,
-      content: this.data.content
-    })
-
+console.log('副职2')
+    setTimeout(_ => {
+      this.setData({
+        title: this.data.title,
+        content: this.data.content
+      })
+    }, 300)
   },
 
   /**
@@ -132,7 +133,11 @@ Page({
 
   primary: function (event) {
    
-    //提交日记
+    // this.setData({
+    //   content: ''
+    // })
+
+    // 提交日记
     console.log(this.data);
     console.log('onLoad2' + app.globalData.userInfo);
     if(this.data.title==''){

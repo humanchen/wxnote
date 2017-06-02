@@ -10,7 +10,7 @@
 
 
 <!--<view class="title">-->
-<textarea class="content"    bindinput="bindContent"  value="{{content}}"/>
+<textarea class="content" placeholder="写点啥吧"   bindinput="bindContent"  value="{{content}}"/>
 <!--</view>-->
 
 <button class="button"  size="default" loading="{{loading}}" plain="{{plain}}"
