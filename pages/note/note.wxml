@@ -3,17 +3,17 @@
 <!--<view class="text">
 <text >添加日志</text>
 </view>-->
+<image src="../../images/back.jpg" class="slide-image" mode="aspectFill" ></image>
+<view class="title">
+<input placeholder="标题么么哒~😘" bindinput="bindTitle"  maxlength="-1"  value="{{title}}"/>
+</view>
+
 
 <!--<view class="title">-->
-<input placeholder="标题么么哒~😘" bindinput="bindTitle" class="title" maxlength="-1" auto-focus value="{{title}}"/>
+<textarea class="content"    bindinput="bindContent"  value="{{content}}"/>
 <!--</view>-->
 
-
-<!--<view class="title">-->
-<textarea class="content" placeholder="😙开开心心过好每一天😜"   bindinput="bindContent"  value="{{content}}"/>
-<!--</view>-->
-
-<button class="button" type="primary" size="default" loading="{{loading}}" plain="{{plain}}"
+<button class="button"  size="default" loading="{{loading}}" plain="{{plain}}"
         disabled="{{disabled}}" bindtap="primary" > 保存 </button>
 
  

@@ -28,7 +28,9 @@ page{height:100%;
 
 .userinfo-nickname {
   margin-top: 100rpx;
-  color: #aaa;
+  color: firebrick;
+  font-weight: bold;
+  z-index: 1;
 }
 
 .hide{
@@ -118,4 +120,5 @@ color: transparent;
   right: 50rpx;
   width: 100rpx;
   height: 100rpx;
+  z-index: 1;
 }

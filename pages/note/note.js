@@ -11,14 +11,19 @@ Page({
     title: '',
     content: '',
     userInfo: {},
+    needupdate : 1,//更新标记
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.title==undefined)
+    if(options.title==undefined){
        options.title='';
+       this.data.needupdate=0;
+       console.log('更新吗' + this.data.needupdate)
+
+    }
 
     if (options.content == undefined)
       options.content = '';
@@ -54,7 +59,11 @@ Page({
    */
   onShow: function () {
 
-   
+    this.setData({
+     
+      title: this.data.title,
+      content: this.data.content
+    })
 
   },
 
@@ -141,7 +150,7 @@ Page({
       return;
     }
 
-    if(this.data._id == undefined){
+    if(this.data.needupdate == 0){
       //提交新日记
       wx.request({
         url: "https://api.humanchan.me/v1/addnote",
@@ -175,7 +184,7 @@ Page({
       })
     
     }else{
-      console.log('更新日记');
+      console.log('更新日记' + this.data.nid);
 
       wx.request({
         url: "https://api.humanchan.me/v1/updatenote",
@@ -185,7 +194,7 @@ Page({
         method: "POST",
         //data: { cityname: "上海", key: "1430ec127e097e1113259c5e1be1ba70" },  
         data: {
-          _id: this.date.nid,
+          _id: this.data.nid,
           title: this.data.title,
           content: this.data.content,
         },

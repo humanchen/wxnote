@@ -23,8 +23,8 @@
 </swiper>
 
 </view>-->
-<image src="./back.jpg" class="slide-image" mode="aspectFill" ></image>
- <text class="{{flag===0?'hide':'userinfo-nickname'}}" >赶快记录第一条笔记吧~</text>
+<image src="../../images/back.jpg" class="slide-image" mode="aspectFill" ></image>
+ <text class="{{flag===0?'hide':'userinfo-nickname'}}" >赶快记录第一条笔记吧~☺️</text>
   <scroll-view scroll-y="true" class="scrollview" bindscrolltoupper="bindscrolltoupper">
     <view wx:for="{{items}}" class="note">
       <navigator url="../note/note?title={{item.title}}&&content={{item.content}}&&_id={{item._id}}" class="notenav">
@@ -36,7 +36,7 @@
     </view>
   </scroll-view>
 
-  <image src="./添加笔记.png" class="add" mode="aspectFit" bindtap="addnote"></image>
+  <image src="../../images/addnote.png" class="add" mode="aspectFit" bindtap="addnote"></image>
   <!--<view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>-->

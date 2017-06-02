@@ -92,41 +92,105 @@ Page({
 
     console.log('index界面显示');
 
-    let that = this;
-    wx.request({
-      url: 'https://api.humanchan.me/v1/listnote',
-      data: {
-        uid: app.globalData.userInfo
-      },
-      header: {
-        "Content-Type": "application/x-www-form-urlencoded"
-      },
-      method: "POST",
-      success: function (res) {
+    var openid = wx.getStorageSync('openid')
+    var that = this;
 
-        if (res.data == 0) {
+    if (openid) {
+      console.log('已经有openid' + openid);
+      wx.request({
+        url: 'https://api.humanchan.me/v1/listnote',
+        data: {
+          uid: app.globalData.userInfo
+        },
+        header: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        method: "POST",
+        success: function (res) {
 
-          that.setData({
-            items: res.data,
-            flag: 1
-          })
+          if (res.data == 0) {
+
+            that.setData({
+              items: res.data,
+              flag: 1
+            })
 
 
 
-        } else {
-          console.log(res.data)
-          that.setData({
-            items: res.data,
-            flag: 0
-          })
+          } else {
+            console.log(res.data)
+            that.setData({
+              items: res.data,
+              flag: 0
+            })
+
+          }
+
+
+
 
         }
+      })
+    } else {
+      console.log('走登录');
+      wx.login({
+
+        success: function (res) {
+          console.log('登录成功' + res);
+
+          if (res.code) {
+
+            //发起网络请求
+            wx.request({
+              url: 'https://api.humanchan.me/v1/getopenid',
+              data: {
+                code: res.code
+              },
+              success: function (res) {
+                console.log(res.data.data.openid);
+                wx.request({
+                  url: 'https://api.humanchan.me/v1/listnote',
+                  data: {
+                    uid: res.data.data.openid
+                  },
+                  header: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                  },
+                  method: "POST",
+                  success: function (res) {
+
+                    if (res.data == 0) {
+
+                      that.setData({
+                        items: res.data,
+                        flag: 1
+                      })
+
+
+
+                    } else {
+                      console.log(res.data)
+                      that.setData({
+                        items: res.data,
+                        flag: 0
+                      })
+
+                    }
 
 
 
 
-      }
-    })
+                  }
+                })
+              }
+            })
+          } else {
+            console.log('获取用户登录态失败！' + res.errMsg)
+          }
+        }
+      })
+    }
+   
   }
 })
 
