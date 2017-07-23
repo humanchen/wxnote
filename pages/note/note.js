@@ -12,6 +12,10 @@ Page({
     content: '',
     userInfo: {},
     needupdate : 1,//更新标记
+    items: ["https://www.humanchan.me/images/qqq.png", "https://www.humanchan.me/images/qqq.png",
+      "https://www.humanchan.me/images/qqq.png", "https://www.humanchan.me/images/qqq.png",
+      "https://www.humanchan.me/images/qqq.png"],
+    styles: ["", "imagemar" , "","",'imagemar']
   },
 
   /**
@@ -28,12 +32,22 @@ Page({
     if (options.content == undefined)
       options.content = '';
 
+
       this.setData({
         nid:options._id,
         title: options.title,
-        content:options.content
+        // content:options.content
         
       })
+
+      setTimeout(_ => {
+        this.setData({
+          // nid: options._id,
+          // title: options.title,
+          content: options.content
+        })
+      }, 200)
+
       console.log('副职1')
     // console.log(this.data);
 
@@ -60,12 +74,12 @@ Page({
    */
   onShow: function () {
 console.log('副职2')
-    setTimeout(_ => {
-      this.setData({
-        title: this.data.title,
-        content: this.data.content
-      })
-    }, 300)
+    // setTimeout(_ => {
+    //   this.setData({
+    //     title: this.data.title,
+    //     content: this.data.content
+    //   })
+    // }, 300)
   },
 
   /**
@@ -136,7 +150,9 @@ console.log('副职2')
     // this.setData({
     //   content: ''
     // })
-
+    wx.showLoading({
+      title: '请稍等...',
+    })
     // 提交日记
     console.log(this.data);
     console.log('onLoad2' + app.globalData.userInfo);
@@ -156,6 +172,11 @@ console.log('副职2')
     }
 
     if(this.data.needupdate == 0){
+     
+
+      
+       
+    
       //提交新日记
       wx.request({
         url: "https://api.humanchan.me/v1/addnote",
@@ -178,6 +199,7 @@ console.log('副职2')
           time: getNowFormatDate()
         },
         complete: function (res) {
+          wx.hideLoading()
           console.log(res.data);
           
           wx.navigateBack();
@@ -204,6 +226,7 @@ console.log('副职2')
           content: this.data.content,
         },
         complete: function (res) {
+          wx.hideLoading()
           console.log(res.data);
           wx.navigateBack();
           if (res == null || res.data == null) {

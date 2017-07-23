@@ -13,6 +13,14 @@
 <textarea class="content" placeholder="写点啥吧"   bindinput="bindContent"  value="{{content}}"/>
 <!--</view>-->
 
+<!--测试-->
+<!--<view class="imageplace">
+<view  wx:key="*this" wx:for="{{items}}"  wx:for-index="idx">
+<image class="image1 {{styles[idx]}}" src="{{item}}" mode="aspectFill" >{{idx}}</image>
+
+</view>
+</view>-->
+
 <button class="button"  size="default" loading="{{loading}}" plain="{{plain}}"
         disabled="{{disabled}}" bindtap="primary" > 保存 </button>
 

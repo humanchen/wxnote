@@ -8,7 +8,7 @@
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#ffbd69",
-    "navigationBarTitleText": "随云笔记",
+    "navigationBarTitleText": "随云记事",
     "navigationBarTextStyle":"white"
   },
   "tabBar": {

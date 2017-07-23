@@ -1,6 +1,11 @@
 <!--logs.wxml-->
+<view class="classname">
+<!--<image src="{{path}}" style="{{size}}" class="slide-image" mode="aspectFill" bindtap="bindViewTap2"></image>-->
+<button class="button"  size="default"   bindtap="bindViewTap"> 有意见或者问题可以戳我噢😀 </button>
+<button class="button"  size="default"   bindtap="bindViewTap3"> 上传 </button>
 <view class="container log-list">
   <block wx:for="{{logs}}" wx:for-item="log" wx:key="*this">
     <text class="log-item">{{index + 1}}. {{log}}</text>
   </block>
+</view>
 </view>

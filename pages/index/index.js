@@ -64,6 +64,9 @@ Page({
 
 
   },
+  bindscrolltoupper: function (e) {
+    console.log('下拉')
+  },
   changeIndicatorDots: function (e) {
     this.setData({
       indicatorDots: !this.data.indicatorDots
@@ -89,7 +92,7 @@ Page({
    */
   onShow: function () {
 
-
+    wx.showNavigationBarLoading()
     console.log('index界面显示');
 
     var openid = wx.getStorageSync('openid')
@@ -107,7 +110,7 @@ Page({
         },
         method: "POST",
         success: function (res) {
-
+          wx.hideNavigationBarLoading()
           if (res.data == 0) {
 
             that.setData({
@@ -148,6 +151,7 @@ Page({
               },
               success: function (res) {
                 console.log(res.data.data.openid);
+
                 wx.request({
                   url: 'https://api.humanchan.me/v1/listnote',
                   data: {
@@ -158,7 +162,7 @@ Page({
                   },
                   method: "POST",
                   success: function (res) {
-
+                    wx.hideNavigationBarLoading()
                     if (res.data == 0) {
 
                       that.setData({
@@ -185,6 +189,7 @@ Page({
               }
             })
           } else {
+            
             console.log('获取用户登录态失败！' + res.errMsg)
           }
         }

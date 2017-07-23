@@ -3,14 +3,14 @@
 var app = getApp()
 Page({
   data: {
-    motto: '随云笔记 v1.0.5',
+    motto: '随云记事 v1.1.0',
     userInfo: {}
   },
   //事件处理函数
   bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    // wx.navigateTo({
+    //   url: '../logs/logs'
+    // })
   },
   onLoad: function () {
     console.log('onLoad')
@@ -23,5 +23,9 @@ Page({
       })
      
     })
+  },
+  onPullDownRefresh: function () {
+    // wx.stopPullDownRefresh()
+    console.log('下拉')
   }
 })
